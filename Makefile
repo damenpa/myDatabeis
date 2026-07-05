@@ -1,2 +1,5 @@
+CXX = g++
+CXXFLAGS = -std=c++17 -Wall -Wextra -Iinclude
+
 all:
-	g++ src/*.cpp -Iinclude -o build/myDatabeis
+	$(CXX) $(CXXFLAGS) src/*.cpp -o build/myDatabeis

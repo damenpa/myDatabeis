@@ -1,13 +1,10 @@
 #include "database.hpp"
 #include "record.hpp"
 #include <iostream>
+#include <fstream>
 
 int main() {
-    Database db = Database();
-
-    db.insert(1,"Yolis");
-    db.insert(2,"Pedro");
-
-    std::cout << db.get(2) << std::endl;
+    
+    Record record(1,"Hola");
     
 }
