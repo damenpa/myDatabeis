@@ -14,4 +14,27 @@ std::string Database::get(int id) {
     }
 }
 
+void Database::save() {
+
+    std::ofstream file("records.bin",std::ios::binary);
+    for (auto& r : records) {
+        r.serialize(file);
+    }
+
+}
+
+void Database::load() {
+
+    records.clear();
+    std::ifstream file("records.bin",std::ios::binary);
+
+    Record r;
+
+        while(Record::deserialize(file,r)) {
+            records.push_back(r);
+        }
+}
+
+
+
 

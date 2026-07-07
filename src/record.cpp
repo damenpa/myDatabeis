@@ -1,14 +1,14 @@
 #include "record.hpp"
 #include <fstream>
 
-void Record::serialize(std::ofstream& file, Record &r) {
+void Record::serialize(std::ofstream& file) {
 
     file.write(
-        reinterpret_cast<char*>(&r.id),
-        sizeof(r.id)
+        reinterpret_cast<char*>(&id),
+        sizeof(id)
     );
 
-    int length = r.value.size();
+    int length = value.size();
 
     file.write(
         reinterpret_cast<char*>(&length), 
@@ -16,19 +16,19 @@ void Record::serialize(std::ofstream& file, Record &r) {
     );
 
     file.write(
-        r.value.data(),
+        value.data(),
         length
     );
 }
 
-Record Record::deserialize(std::ifstream& file) {
-
-    Record r;
+bool Record::deserialize(std::ifstream& file,Record &r) {
 
     file.read(
         reinterpret_cast<char*>(&r.id),
         sizeof(r.id)
     );
+
+    if(!file) return false;
 
     int length;
 
@@ -40,9 +40,9 @@ Record Record::deserialize(std::ifstream& file) {
     r.value.resize(length);
 
     file.read(
-        r.value.data(),
+        &r.value[0],
         length
     );
-
-    return r;
+    
+    return true;
 }

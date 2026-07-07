@@ -16,7 +16,7 @@ class Record {
 
     Record() = default;
 
-    void serialize(std::ofstream& file,Record &r);
-    Record deserialize(std::ifstream& file);
+    void serialize(std::ofstream& file);
+    static bool deserialize(std::ifstream& file, Record &r);
 
 };

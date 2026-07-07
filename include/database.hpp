@@ -15,4 +15,7 @@ class Database {
 
     std::string get(int id);
 
+    void save();
+    void load();
+
 };
