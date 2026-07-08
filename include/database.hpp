@@ -9,11 +9,22 @@
 class Database {
     public:
 
+    Database() {
+        load();
+        buildIndex();
+    }
+
+    std::unordered_map<uint32_t,size_t> index;
+
     std::vector<Record> records;
 
-    void insert(Record r);
+    bool insert(Record r);
+    std::string get(uint32_t id);
+    bool update(uint32_t id, std::string value);
+    bool remove(uint32_t id);
+    void list();
 
-    std::string get(int id);
+    void buildIndex();
 
     void save();
     void load();
