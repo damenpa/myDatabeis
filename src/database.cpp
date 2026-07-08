@@ -2,8 +2,8 @@
 #include "database.hpp"
 #include <fstream>
 
-void Database::insert(int id, std::string value) {
-    records.push_back(Record(id,value));
+void Database::insert(Record r) {
+    records.push_back(r);
 } 
 
 std::string Database::get(int id) {
@@ -16,7 +16,7 @@ std::string Database::get(int id) {
 
 void Database::save() {
 
-    std::ofstream file("records.bin",std::ios::binary);
+    std::ofstream file("data/records.bin",std::ios::binary);
     for (auto& r : records) {
         r.serialize(file);
     }
@@ -26,7 +26,7 @@ void Database::save() {
 void Database::load() {
 
     records.clear();
-    std::ifstream file("records.bin",std::ios::binary);
+    std::ifstream file("data/records.bin",std::ios::binary);
 
     Record r;
 

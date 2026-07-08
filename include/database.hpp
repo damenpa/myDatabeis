@@ -11,7 +11,7 @@ class Database {
 
     std::vector<Record> records;
 
-    void insert(int id,std::string value);
+    void insert(Record r);
 
     std::string get(int id);
 

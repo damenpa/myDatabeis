@@ -5,6 +5,10 @@
 
 int main() {
     
-    Record record(1,"Hola");
-    
+    Record r(1,"Hola");
+    Database db = Database();
+
+    db.load();
+    std::cout << db.get(1) << "\n";
+
 }
