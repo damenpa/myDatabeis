@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-bool Database::insert(Record r) {
+bool Database::insert(Record &r) {
     
     if(index.find(r.id) != index.end()) {
         return false;
@@ -25,17 +25,22 @@ std::string Database::get(uint32_t id) {
 }
 
 bool Database::remove(uint32_t id) {
-    for(auto it = records.begin(); it != records.end(); it++) {
-        if(it->id == id) {
-            records.erase(it);
-            buildIndex();
-            return true;
-        }
-    }
-    return false;
+    if(index.find(id) != index.end()) {
+        size_t pos = index[id];
+        
+        records[pos] = records.back();
+
+        index[records[pos].id] = pos;
+
+        records.pop_back();
+        index.erase(id);
+
+        return true;    
+
+    } else return false;
 }    
 
-bool Database::update(uint32_t id, std::string value) {
+bool Database::update(uint32_t id, std::string &value) {
 
     if(index.find(id) == index.end()) {
         return false;

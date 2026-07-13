@@ -4,9 +4,5 @@
 #include <fstream>
 
 int main() {
-    Database db = Database();
-    db.load();
-
     
-
 }

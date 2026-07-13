@@ -18,9 +18,9 @@ class Database {
 
     std::vector<Record> records;
 
-    bool insert(Record r);
+    bool insert(Record &r);
     std::string get(uint32_t id);
-    bool update(uint32_t id, std::string value);
+    bool update(uint32_t id, std::string &value);
     bool remove(uint32_t id);
     void list();
 
